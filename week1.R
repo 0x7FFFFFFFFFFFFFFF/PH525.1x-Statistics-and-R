@@ -89,3 +89,65 @@ install.packages("dplyr")
 library("dplyr")
 
 ?dplyr
+
+bt <- c("A", "B", "AB", "O")
+bt <- factor(bt)
+bt
+bt[1]
+bt[2]
+bt[3]
+bt[4]
+
+bt <- factor(c("A", "B", "O", "AB"), ordered = TRUE)
+str(bt)
+levels(bt)
+
+bt <- factor(c("A", "B", "O", "AB", "A"), levels = c("O", "A", "B", "AB"), labels = c("M", "N", "O", "P"), ordered = TRUE)
+str(bt)
+levels(bt)
+
+
+a <- c(10, 20, 30, 40)
+a[-3]
+
+
+
+getwd()
+setwd("~/my_projects/PH525.1x-Statistics-and-R/")
+getwd()
+url <- "https://github.com/justmarkham/dplyr-tutorial/raw/master/dplyr-tutorial.Rmd"
+download.file(url, basename(url))
+
+
+install.packages("downloader")
+library(downloader)
+url="https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/msleep_ggplot2.csv"
+filename <- basename(url)
+download(url,filename)
+
+
+
+
+install.packages("dplyr")
+library(dplyr)
+url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/msleep_ggplot2.csv"
+msleep <- read.csv(url)
+head(msleep)
+
+
+mg <- read.csv("./msleep_ggplot2.csv")
+class(mg)
+nrow(mg)
+mg
+filter(mg, order == "Primates")
+mg %>% filter(order == "Primates") %>% nrow()
+mg %>% filter(order == "Primates") %>% class()
+mg %>% filter(order == "Primates") %>% select(sleep_total) %>% class()
+mg %>% filter(order == "Primates") %>% select(sleep_total) %>% mean() # error!
+?unlist
+mg %>% filter(order == "Primates") %>% select(sleep_total) %>% unlist() %>% mean()
+mg %>% filter(order == "Primates") %>% summarise(mean(sleep_total))
+
+
+
+
